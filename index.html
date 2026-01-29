@@ -7,6 +7,25 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    :root {
+      /* ORANGE BRAND PALETTE (clean & professional) */
+      --c2: #f59e0b; /* amber */
+      --c3: #fb923c; /* orange */
+      --c4: #c2410c; /* dark orange */
+    }
+
+    .animated-gradient {
+      background: linear-gradient(270deg, var(--c2), var(--c3), var(--c4));
+      background-size: 500% 500%;
+      animation: gradientMove 20s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     .wave {
       display: inline-block;
       animation: wave-animation 1.5s ease-in-out 1;
@@ -117,31 +136,56 @@
       70% { transform: translateY(0) rotate(-3deg); }
       100% { transform: translateY(120px); opacity: 0; }
     }
+  
+    .animated-bg {
+      background: linear-gradient(120deg,
+        #fff7ed,
+        #fffbeb,
+        #fef3c7,
+        #ffedd5,
+        #fff7ed
+      );
+      background-size: 400% 400%;
+      animation: lightBgMove 25s ease infinite;
+    }
+
+    @keyframes lightBgMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
   </style>
+
+<script>
+  function waveOnce(el) {
+    el.classList.remove('wave');
+    void el.offsetWidth; // restart animation
+    el.classList.add('wave');
+  }
+</script>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="text-gray-800 animated-bg">
 
 <!-- HERO SECTION -->
-<section class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-20">
-  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+<section class="animated-gradient text-white py-20">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col items-center text-center">
     <div>
-      <h1 class="text-5xl font-bold mb-4">Hi, I'm Mehak <span class="wave">👋</span></h1>
+      <h1 class="text-5xl font-bold mb-4">Hi, I'm Mehak <span class="wave" onclick="waveOnce(this)">👋</span></h1>
       <h2 class="text-2xl mb-4">Digital Marketer</h2>
       <p class="text-lg mb-6">I help businesses grow with SEO, ads, and smart digital marketing strategies.</p>
-      <div class="flex gap-4">
-        <a href="#projects" class="bg-white text-orange-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100">Hire Me</a>
-        <a href="#projects" class="border border-white px-6 py-3 rounded-xl hover:bg-white hover:text-orange-600">My Work</a>
+      <div class="flex gap-4 justify-center">
+        <a href="Mehak-Resume.pdf" download class="bg-orange-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-orange-700 transition">Download Resume</a>
+        
+        
       </div>
     </div>
-    <div class="flex justify-center">
-      <img src="C:\Users\mehak\Downloads\Photos-1-001\mehak.jpg.jpg" alt="Mehak" class="rounded-3xl shadow-2xl w-80">
-    </div>
+    
   </div>
 </section>
 
 <!-- ABOUT -->
-<section class="py-20 bg-gradient-to-br from-orange-50 to-white">
-  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+<section class="py-20 bg-gray-50 text-gray-800">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col items-center text-center">
     
     <!-- About Text -->
     <div class="animate-fade">
@@ -156,31 +200,28 @@
         My strength lies in creating <span class="font-semibold">data-driven SEO strategies</span>, improving organic traffic, building quality backlinks, optimizing content, and scaling brands through smart digital marketing.
       </p>
 
-      <div class="flex gap-6 mt-6">
-        <div class="bg-white shadow-lg rounded-xl p-5 text-center hover:scale-105 transition">
+      <div class="flex gap-6 mt-6 justify-center">
+        <div class="bg-white/90 backdrop-blur-md shadow-lg rounded-xl p-5 text-center hover:scale-105 transition">
           <p class="text-3xl font-bold text-orange-600">2+</p>
           <p class="text-gray-600">Years Experience</p>
         </div>
-        <div class="bg-white shadow-lg rounded-xl p-5 text-center hover:scale-105 transition">
+        <div class="bg-white/90 backdrop-blur-md shadow-lg rounded-xl p-5 text-center hover:scale-105 transition">
           <p class="text-3xl font-bold text-orange-600">10+</p>
           <p class="text-gray-600">Projects</p>
         </div>
-        <div class="bg-white shadow-lg rounded-xl p-5 text-center hover:scale-105 transition">
+        <div class="bg-white/90 backdrop-blur-md shadow-lg rounded-xl p-5 text-center hover:scale-105 transition">
           <p class="text-3xl font-bold text-orange-600">5+</p>
           <p class="text-gray-600">Industries</p>
         </div>
       </div>
     </div>
 
-    <!-- About Image -->
-    <div class="flex justify-center animate-float">
-      <img src="file:///C:/Users/mehak/Downloads/Photos-1-001/mehak.jpg" alt="Mehak" class="rounded-3xl shadow-2xl w-80">
-    </div>
+    
   </div>
 </section>
 
 <!-- SKILLS -->
-<section class="py-20 bg-gradient-to-br from-white to-orange-50">
+<section class="py-20 bg-gray-50 text-gray-800">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="text-4xl font-bold text-center mb-4">My Skills</h2>
     <p class="text-center text-gray-600 mb-12">Tools & strategies I use to grow brands digitally</p>
@@ -241,7 +282,7 @@
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="py-20 bg-gradient-to-br from-orange-50 to-white">
+<section id="projects" class="py-20 bg-gray-50 text-gray-800">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="text-4xl font-bold text-center mb-4">Projects</h2>
     <p class="text-center text-gray-600 mb-12">Real projects that helped brands grow digitally</p>
@@ -310,10 +351,10 @@
 </section>
 
 <!-- CONNECT WITH ME -->
-<section class="py-20 bg-gray-900 text-white relative overflow-hidden">
+<section id="connect" class="py-20 bg-gray-900 text-white relative overflow-hidden">
   <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
     <h2 class="text-4xl font-bold mb-6">Let’s Connect</h2>
-    <p class="text-gray-300 mb-10 text-lg">Open to opportunities, collaborations, and digital growth discussions.</p>
+    <p class="text-gray-600 mb-10 text-lg">Open to opportunities, collaborations, and digital growth discussions.</p>
 
     <div class="flex flex-col md:flex-row justify-center gap-8 text-lg">
       <a href="mailto:mehakrajput146@gmail.com" class="flex items-center gap-3 hover:text-orange-400 transition">
@@ -340,8 +381,3 @@
 
 </body>
 </html>
-
-
-
-
-
