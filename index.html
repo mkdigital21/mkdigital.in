@@ -1,762 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mehak | Digital Marketer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Import a clean, modern font */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mehak | Digital Marketer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .wave {
+      display: inline-block;
+      animation: wave-animation 1.5s ease-in-out 1;
+      transform-origin: 70% 70%;
+      cursor: pointer;
+    }
 
-        /* Responsive section title with an animated underline */
-        .section-title {
-            position: relative;
-            display: inline-block;
-            font-family: 'Poppins', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 2rem;
-        }
-        @media (min-width: 768px) {
-            .section-title {
-                font-size: 2.5rem;
-            }
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 50%;
-            height: 4px;
-            background-color: #f59e0b;
-            border-radius: 9999px;
-            animation: expandLine 1s ease-in-out;
-        }
-        @keyframes expandLine {
-            from { width: 0; }
-            to { width: 50%; }
-        }
+    .wave:hover {
+      animation: wave-animation 1s ease-in-out 1;
+    }
 
-        /* Refined Card Hover Effects */
-        .card {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .card:hover {
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            transform: translateY(-8px);
-        }
-        
-        /* Fade-in animation for sections */
-        .animate-fade-in {
-            animation: fadeIn 1s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    @keyframes wave-animation {
+      0% { transform: rotate(0deg); }
+      10% { transform: rotate(14deg); }
+      20% { transform: rotate(-8deg); }
+      30% { transform: rotate(14deg); }
+      40% { transform: rotate(-4deg); }
+      50% { transform: rotate(10deg); }
+      60% { transform: rotate(0deg); }
+      100% { transform: rotate(0deg); }
+    }
+    .skill-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      animation: fadeUp 0.8s ease both;
+    }
 
-        /* Specific hover styles for service and skill cards */
-        .service-card:hover {
-            background-color: #f59e0b;
-            color: white;
-        }
-        .service-card:hover i {
-            color: white;
-        }
-        .skill-card:hover {
-            background-color: #f59e0b;
-            color: white;
-        }
-        .skill-card:hover i {
-            color: white;
-        }
+    .skill-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      background: #fff7ed;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
 
-        /* Refined Contact Card Hover */
-        .contact-card:hover {
-            background-color: #3b82f6;
-            color: white;
-        }
-        .contact-card:hover i {
-            color: white;
-        }
+    .skill-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
 
-        /* Testimonial Slider specific styles for mobile */
-        .testimonial-slider {
-            position: relative;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .testimonial-container {
-            overflow: hidden;
-            border-radius: 1rem;
-            background-color: #ffffff;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1-px rgba(0, 0, 0, 0.06);
-            padding: 2rem 1rem;
-            min-height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        @media (min-width: 768px) {
-            .testimonial-container {
-                padding: 2.5rem;
-            }
-        }
-        .testimonial-card {
-            width: 100%;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            animation: slideIn 0.5s ease-in-out;
-        }
-        .testimonial-card.active {
-            display: flex;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        .slider-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(245, 158, 11, 0.8);
-            color: white;
-            border: none;
-            padding: 0.75rem;
-            cursor: pointer;
-            z-index: 10;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        .slider-btn:hover {
-            background: #f59e0b;
-            transform: translateY(-50%) scale(1.1);
-        }
-        #prevBtn {
-            left: -15px;
-        }
-        #nextBtn {
-            right: -15px;
-        }
-        @media (min-width: 768px) {
-            #prevBtn {
-                left: -30px;
-            }
-            #nextBtn {
-                right: -30px;
-            }
-        }
-        .testimonial-card::before {
-            content: "\f10d";
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            position: absolute;
-            top: 1rem;
-            left: 1.5rem;
-            font-size: 3rem;
-            color: #f59e0b;
-            opacity: 0.1;
-            z-index: 0;
-        }
+    .skill-card p {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
 
-        /* Hero section and animations */
-        .hero-text-container {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            padding: 2rem 2rem;
-            border-radius: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            animation: bounceIn 1s ease-out;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-        @media (min-width: 768px) {
-            .hero-text-container {
-                padding: 2.5rem 3.5rem;
-            }
-            <!-- Profile Image -->
-<div class="mt-6 flex justify-center">
-    <img 
-        src=""C:\Users\mehak\Downloads\Photos-1-001\B612_20230531_150047_730~2.jpg"" 
-        alt="Mehak - Digital Marketer"
-        class="w-40 h-40 md:w-48 md:h-48 rounded-full border-4 border-white shadow-xl object-cover hover:scale-110 transition duration-500"
-    >
-</div>
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .project-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: all 0.4s ease;
+      animation: fadeUp 0.8s ease both;
+    }
 
-        }
-        .hero-text-shadow {
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-        }
-        @keyframes blinkColor {
-            0%, 100% { color: #ffffff; }
-            50% { color: #fef08a; }
-        }
-        .animate-blink-color {
-            animation: blinkColor 3s infinite ease-in-out;
-        }
-        @keyframes bounceIn {
-            0% { opacity: 0; transform: scale(0.8) translateY(20px); }
-            50% { transform: scale(1.05) translateY(-5px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+      background: #fff7ed;
+    }
 
-        /* Mobile Menu Overlay Animation */
-        .mobile-menu {
-            transition: all 0.5s ease-in-out;
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        .mobile-menu.active {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        
-        /* Staggered animation for menu links */
-        .mobile-menu.active .nav-link {
-            animation: slideInLink 0.5s ease-in-out forwards;
-        }
-        .mobile-menu.active .nav-link:nth-child(1) { animation-delay: 0.1s; }
-        .mobile-menu.active .nav-link:nth-child(2) { animation-delay: 0.2s; }
-        .mobile-menu.active .nav-link:nth-child(3) { animation-delay: 0.3s; }
-        .mobile-menu.active .nav-link:nth-child(4) { animation-delay: 0.4s; }
-        .mobile-menu.active .nav-link:nth-child(5) { animation-delay: 0.5s; }
-        .mobile-menu.active .nav-link:nth-child(6) { animation-delay: 0.6s; }
-        .mobile-menu.active .nav-link:nth-child(7) { animation-delay: 0.7s; }
-        .mobile-menu.active .nav-link:nth-child(8) { animation-delay: 0.8s; }
-        @keyframes slideInLink {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+    .project-link {
+      font-weight: 600;
+      color: #ea580c;
+      transition: all 0.3s ease;
+      display: inline-block;
+      margin-top: 0.5rem;
+      position: relative;
+      z-index: 10;
+      pointer-events: auto;
+      cursor: pointer;
+    }
 
-        /* Logo and hamburger icon styles */
-        .logo-text {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: #1f2937;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            transition: none; /* Removed transition for hover effect */
-        }
-        
-        .hamburger-icon {
-            stroke: #f59e0b;
-            stroke-width: 2;
-            transition: stroke 0.3s ease;
-        }
-        .hamburger-icon-close {
-            stroke: #ffffff;
-            stroke-width: 2;
-        }
-        .hamburger-button {
-            display: block;
-            position: relative;
-            z-index: 70;
-        }
-    </style>
+    .project-link:hover {
+      color: #9a3412;
+      letter-spacing: 0.5px;
+    }
+    @keyframes grow {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .animate-grow {
+      animation: grow 1s ease-out both;
+    }
+
+    .emoji-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .emoji-float.delay-1 { animation-delay: 0.2s; }
+    .emoji-float.delay-2 { animation-delay: 0.4s; }
+    .emoji-float.delay-3 { animation-delay: 0.6s; }
+    .emoji-float.delay-4 { animation-delay: 0.8s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+      40% { transform: translateY(0); opacity: 1; }
+      70% { transform: translateY(0) rotate(-3deg); }
+      100% { transform: translateY(120px); opacity: 0; }
+    }
+  </style>
 </head>
-<body class="antialiased text-gray-800">
-    <!-- Navigation Bar -->
-    <nav class="bg-white text-gray-800 p-4 sticky top-0 z-50 shadow-md">
-        <div class="container mx-auto flex items-center justify-between">
-            <!-- New text logo with hover effect, now visible on all devices -->
-            <a href="#" class="flex items-center gap-2 group" aria-label="Mehak Digital">
-                <div class="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center text-white font-bold text-xl group-hover:scale-110 transition-transform duration-300">MK</div>
-                <!-- Removed hidden and sm:block classes to make text always visible -->
-                <span class="logo-text">Digital</span>
-            </a>
-            <!-- Hamburger menu button (now visible on all screen sizes) -->
-            <button id="menu-button" class="w-8 h-8 text-orange-500 hover:text-orange-600 focus:outline-none hamburger-button transition-all duration-300" aria-label="Open navigation menu">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path class="hamburger-icon" d="M4 6H20" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path class="hamburger-icon" d="M4 12H20" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path class="hamburger-icon" d="M4 18H20" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-            </button>
-        </div>
-    </nav>
-    
-    <!-- Full-screen Mobile Menu Overlay -->
-    <div id="mobile-menu-overlay" class="mobile-menu fixed top-0 right-0 h-full w-full bg-gray-900 bg-opacity-95 z-[60] flex flex-col items-center justify-center text-white p-8">
-        <button id="close-menu-button" class="absolute top-6 right-6 w-8 h-8 text-orange-500 hover:text-white transition-colors duration-300" aria-label="Close navigation menu">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path class="hamburger-icon-close" d="M6 18L18 6M6 6L18 18" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </button>
-        <div class="flex flex-col items-center space-y-8 text-2xl font-bold">
-            <a href="#" class="nav-link hover:text-orange-500 transition-all duration-300" onclick="closeMenu()">Home</a>
-            <a href="#services" class="nav-link hover:text-orange-500 transition-all duration-300" onclick="closeMenu()">Services</a>
-            <a href="#skills" class="nav-link hover:text-orange-500 transition-all duration-300" onclick="closeMenu()">Skills</a>
-            <a href="#experience" class="nav-link hover:text-orange-500 transition-all duration-300" onclick="closeMenu()">Experience</a>
-            <a href="#projects" class="nav-link hover:text-orange-500 transition-all duration-300" onclick="closeMenu()">Projects</a>
-            <a href="#testimonials" class="nav-link hover:text-orange-500 transition-all duration-300" onclick="closeMenu()">Testimonials</a>
-            <a href="#education" class="nav-link hover:text-orange-500 transition-all duration-300" onclick="closeMenu()">Education</a>
-            <a href="#contact" class="nav-link hover:text-orange-500 transition-all duration-300" onclick="closeMenu()">Contact</a>
-        </div>
+<body class="bg-gray-50 text-gray-800">
+
+<!-- HERO SECTION -->
+<section class="bg-gradient-to-r from-orange-500 to-red-500 text-white py-20">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+    <div>
+      <h1 class="text-5xl font-bold mb-4">Hi, I'm Mehak <span class="wave">👋</span></h1>
+      <h2 class="text-2xl mb-4">Digital Marketer</h2>
+      <p class="text-lg mb-6">I help businesses grow with SEO, ads, and smart digital marketing strategies.</p>
+      <div class="flex gap-4">
+        <a href="#projects" class="bg-white text-orange-600 px-6 py-3 rounded-xl font-semibold hover:bg-gray-100">Hire Me</a>
+        <a href="#projects" class="border border-white px-6 py-3 rounded-xl hover:bg-white hover:text-orange-600">My Work</a>
+      </div>
     </div>
+    <div class="flex justify-center">
+      <img src=""C:\Users\mehak\Downloads\Photos-1-001\B612_20230531_150047_730~2.jpg"" alt="Mehak" class="rounded-3xl shadow-2xl w-80">
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="py-20 bg-gradient-to-br from-orange-50 to-white">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
     
-    <!-- Stylish Header/Hero Section -->
-    <header class="bg-gradient-to-br from-yellow-500 via-orange-500 to-red-500 text-white py-12 md:py-16 px-4 md:px-12 rounded-b-3xl relative overflow-hidden">
-        <div class="absolute inset-0 z-0 opacity-20" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
-        <div class="container mx-auto flex flex-col items-center justify-center relative z-10">
-            <!-- Text Content Section with new styling -->
-            <div class="text-center hero-text-container">
-                <h1 class="text-4xl md:text-6xl font-extrabold mb-2 font-poppins hero-text-shadow animate-blink-color">Mehak</h1>
-                <p class="text-xl md:text-2xl font-light hero-text-shadow animate-blink-color">Digital Marketer</p>
-            </div>
-            <p class="mt-4 max-w-xl text-lg mx-auto text-white text-center">I am a digital marketing expert who helps businesses grow by creating smart plans and engaging content.</p>
-            <!-- Social Media Links below the name -->
-            <div class="mt-6 flex justify-center space-x-6 text-white">
-                <a href="https://linkedin.com/in/mehak-rajput" target="_blank" class="hover:text-gray-200 transition-all duration-300 hover:scale-110" aria-label="LinkedIn profile">
-                    <i class="fab fa-linkedin text-3xl"></i>
-                </a>
-                <a href="mailto:mehakrajput146@gmail.com" class="hover:text-gray-200 transition-all duration-300 hover:scale-110" aria-label="Email me">
-                    <i class="fas fa-envelope text-3xl"></i>
-                </a>
-                <a href="https://wa.me/917291890125" target="_blank" class="hover:text-gray-200 transition-all duration-300 hover:scale-110" aria-label="WhatsApp">
-                    <i class="fab fa-whatsapp text-3xl"></i>
-                </a>
-            </div>
+    <!-- About Text -->
+    <div class="animate-fade">
+      <h2 class="text-4xl font-bold mb-6 text-gray-800">About Me</h2>
+      <p class="text-lg text-gray-600 mb-4">
+        I am a passionate <span class="font-semibold text-orange-600">Digital Marketer</span> with over <span class="font-semibold">2+ years of hands-on experience</span> helping businesses grow online.
+      </p>
+      <p class="text-lg text-gray-600 mb-4">
+        I’ve worked with both <span class="font-semibold">Indian and international clients</span> across industries like e-commerce, manufacturing, education, beauty, and tech. From ranking websites on Google to running high-converting ads, I focus on results, not just reports.
+      </p>
+      <p class="text-lg text-gray-600 mb-6">
+        My strength lies in creating <span class="font-semibold">data-driven SEO strategies</span>, improving organic traffic, building quality backlinks, optimizing content, and scaling brands through smart digital marketing.
+      </p>
+
+      <div class="flex gap-6 mt-6">
+        <div class="bg-white shadow-lg rounded-xl p-5 text-center hover:scale-105 transition">
+          <p class="text-3xl font-bold text-orange-600">2+</p>
+          <p class="text-gray-600">Years Experience</p>
         </div>
-    </header>
-
-    <!-- Services Section -->
-    <section id="services" class="py-16 px-4 md:px-12 bg-gray-100">
-        <div class="container mx-auto animate-fade-in">
-            <h2 class="section-title text-center mx-auto">Services</h2>
-            <!-- Grid layout is responsive, stacking on mobile -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-                <!-- Service Card 1: Search Engine Optimization -->
-                <div class="bg-white p-6 rounded-xl card service-card flex items-start gap-4 group">
-                    <i class="fas fa-rocket text-4xl text-orange-500 mt-1 transition-all duration-300"></i>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2 font-poppins transition-all duration-300">Search Engine Optimization (SEO)</h3>
-                        <p class="text-gray-600 transition-all duration-300">Helping your website show up higher on Google and other search engines so more people can find you.</p>
-                    </div>
-                </div>
-                <!-- Service Card 2: Search Engine Marketing -->
-                <div class="bg-white p-6 rounded-xl card service-card flex items-start gap-4 group">
-                    <i class="fas fa-chart-bar text-4xl text-orange-500 mt-1 transition-all duration-300"></i>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2 font-poppins transition-all duration-300">Search Engine Marketing (SEM)</h3>
-                        <p class="text-gray-600 transition-all duration-300">Creating and managing paid ads on platforms like Google to bring more customers to your business.</p>
-                    </div>
-                </div>
-                <!-- Service Card 3: Social Media Marketing -->
-                <div class="bg-white p-6 rounded-xl card service-card flex items-start gap-4 group">
-                    <i class="fas fa-users text-4xl text-orange-500 mt-1 transition-all duration-300"></i>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2 font-poppins transition-all duration-300">Social Media Marketing (SMM)</h3>
-                        <p class="text-gray-600 transition-all duration-300">Building your brand and connecting with customers on social media platforms like Facebook and Instagram.</p>
-                    </div>
-                </div>
-                <!-- Service Card 4: Content Marketing -->
-                <div class="bg-white p-6 rounded-xl card service-card flex items-start gap-4 group">
-                    <i class="fas fa-pen text-4xl text-orange-500 mt-1 transition-all duration-300"></i>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2 font-poppins transition-all duration-300">Content Marketing</h3>
-                        <p class="text-gray-600 transition-all duration-300">Writing useful and interesting content like blogs and articles to attract new people and keep your existing audience interested.</p>
-                    </div>
-                </div>
-                <!-- Service Card 5: Email Marketing -->
-                <div class="bg-white p-6 rounded-xl card service-card flex items-start gap-4 group">
-                    <i class="fas fa-envelope-open-text text-4xl text-orange-500 mt-1 transition-all duration-300"></i>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2 font-poppins transition-all duration-300">Email Marketing</h3>
-                        <p class="text-gray-600 transition-all duration-300">Sending out professional emails to build relationships with your customers and sell your products or services.</p>
-                    </div>
-                </div>
-                <!-- Service Card 6: Website Management -->
-                <div class="bg-white p-6 rounded-xl card service-card flex items-start gap-4 group">
-                    <i class="fas fa-laptop-code text-4xl text-orange-500 mt-1 transition-all duration-300"></i>
-                    <div>
-                        <h3 class="text-2xl font-bold mb-2 font-poppins transition-all duration-300">Website Management</h3>
-                        <p class="text-gray-600 transition-all duration-300">Making sure your website is always running smoothly, easy for people to use, and technically sound.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="bg-white shadow-lg rounded-xl p-5 text-center hover:scale-105 transition">
+          <p class="text-3xl font-bold text-orange-600">10+</p>
+          <p class="text-gray-600">Projects</p>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-16 px-4 md:px-12 bg-gray-50">
-        <div class="container mx-auto text-center animate-fade-in">
-            <h2 class="section-title text-center mx-auto">Skills</h2>
-            <!-- Grid layout is responsive, stacking on mobile -->
-            <div class="mt-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                <!-- Skill Cards with transitions -->
-                <div class="bg-white p-6 rounded-xl card skill-card flex flex-col items-center justify-center group">
-                    <i class="fas fa-search-plus text-4xl text-orange-500 mb-3 transition-all duration-300"></i>
-                    <p class="text-lg font-medium transition-all duration-300">On-Page SEO</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl card skill-card flex flex-col items-center justify-center group">
-                    <i class="fas fa-link text-4xl text-orange-500 mb-3 transition-all duration-300"></i>
-                    <p class="text-lg font-medium transition-all duration-300">Off-Page SEO</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl card skill-card flex flex-col items-center justify-center group">
-                    <i class="fas fa-globe text-4xl text-orange-500 mb-3 transition-all duration-300"></i>
-                    <p class="text-lg font-medium transition-all duration-300">Website Management</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl card skill-card flex flex-col items-center justify-center group">
-                    <i class="fas fa-pen-nib text-4xl text-orange-500 mb-3 transition-all duration-300"></i>
-                    <p class="text-lg font-medium transition-all duration-300">Content Creation</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl card skill-card flex flex-col items-center justify-center group">
-                    <i class="fas fa-chart-line text-4xl text-orange-500 mb-3 transition-all duration-300"></i>
-                    <p class="text-lg font-medium transition-all duration-300">Google Analytics</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl card skill-card flex flex-col items-center justify-center group">
-                    <i class="fas fa-key text-4xl text-orange-500 mb-3 transition-all duration-300"></i>
-                    <p class="text-lg font-medium transition-all duration-300">Keyword Research</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl card skill-card flex flex-col items-center justify-center group">
-                    <i class="fas fa-bullhorn text-4xl text-orange-500 mb-3 transition-all duration-300"></i>
-                    <p class="text-lg font-medium transition-all duration-300">Google Ads</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl card skill-card flex flex-col items-center justify-center group">
-                    <i class="fas fa-ad text-4xl text-orange-500 mb-3 transition-all duration-300"></i>
-                    <p class="text-lg font-medium transition-all duration-300">Meta Ads</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl card skill-card flex flex-col items-center justify-center group">
-                    <i class="fas fa-mail-bulk text-4xl text-orange-500 mb-3 transition-all duration-300"></i>
-                    <p class="text-lg font-medium transition-all duration-300">Email Marketing</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl card skill-card flex flex-col items-center justify-center group">
-                    <i class="fas fa-blog text-4xl text-orange-500 mb-3 transition-all duration-300"></i>
-                    <p class="text-lg font-medium transition-all duration-300">Blogging</p>
-                </div>
-            </div>
+        <div class="bg-white shadow-lg rounded-xl p-5 text-center hover:scale-105 transition">
+          <p class="text-3xl font-bold text-orange-600">5+</p>
+          <p class="text-gray-600">Industries</p>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- Work Experience Section -->
-    <section id="experience" class="py-16 px-4 md:px-12">
-        <div class="container mx-auto animate-fade-in">
-            <h2 class="section-title text-center mx-auto">Work Experience</h2>
-            <div class="space-y-8 mt-8">
-                <!-- Job 1 -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-2">
-                        <h3 class="text-xl md:text-2xl font-bold">SEO Executive</h3>
-                        <span class="text-sm font-medium text-gray-500">04/2025 - 10/2025</span>
-                    </div>
-                    <p class="text-lg font-medium text-orange-500">
-                        <a href="https://varnikabiz.com/" target="_blank" class="hover:underline transition-all duration-300">Varnika Software Pvt. Ltd.</a>
-                        <span class="text-sm text-gray-500"> (Ghaziabad, India)</span>
-                    </p>
-                    <p class="text-gray-600 mt-2">Performed keyword research and on-page optimization. Monitored site traffic and SEO performance. Built high-quality backlinks for ranking improvement. Collaborated on content optimization strategies. Stayed updated with latest SEO trends and tools.</p>
-                </div>
-                <!-- Job 2 -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-2">
-                        <h3 class="text-xl md:text-2xl font-bold">Digital Marketing Intern</h3>
-                        <span class="text-sm font-medium text-gray-500">10/2023-12/2024</span>
-                    </div>
-                    <p class="text-lg font-medium text-orange-500">
-                        <a href="https://www.techpranee.com/" target="_blank" class="hover:underline transition-all duration-300">TechPranee Digital Agency</a>
-                        <span class="text-sm text-gray-500"> (Hyderabad, Telangana)</span>
-                    </p>
-                    <p class="text-gray-600 mt-2">Supported SEO and social media campaigns. Created content for digital ads and posts. Analyzed website and campaign performance. Conducted market and competitor research. Assisted in client communication and reporting.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- About Image -->
+    <div class="flex justify-center animate-float">
+      <img src="https://via.placeholder.com/350" alt="Mehak" class="rounded-3xl shadow-2xl w-80">
+    </div>
+  </div>
+</section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-16 px-4 md:px-12 bg-gray-50">
-        <div class="container mx-auto animate-fade-in">
-            <h2 class="section-title text-center mx-auto">Projects</h2>
-            <!-- Grid layout is responsive, stacking on mobile -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                <!-- Project 1 -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <h3 class="text-2xl font-bold mb-2">
-                        <a href="https://www.project14.com/" target="_blank" class="text-gray-800 hover:text-orange-500 transition-all duration-300">
-                            Project 14
-                        </a>
-                    </h3>
-                    <p class="text-gray-600">
-                        <span class="flex items-center text-sm font-medium mb-2">
-                            <i class="fas fa-map-marker-alt text-orange-500 mr-2"></i> US
-                        </span>
-                        Implemented targeted SEO strategies for a custom packaging service provider, enhancing visibility for niche keywords like military packaging and wood crates.
-                    </p>
-                </div>
-                <!-- Project 2 -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <h3 class="text-2xl font-bold mb-2">
-                        <a href="https://starryshine.com/" target="_blank" class="text-gray-800 hover:text-orange-500 transition-all duration-300">
-                            Starryshine
-                        </a>
-                    </h3>
-                    <p class="text-gray-600">
-                        <span class="flex items-center text-sm font-medium mb-2">
-                            <i class="fas fa-map-marker-alt text-orange-500 mr-2"></i> US
-                        </span>
-                        Optimized SEO and product page structure for a dental supplies e-commerce site, improving keyword rankings and organic traffic.
-                    </p>
-                </div>
-                <!-- Project 3 -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <h3 class="text-2xl font-bold mb-2">
-                        <a href="https://www.stafffinder.com.au/" target="_blank" class="text-gray-800 hover:text-orange-500 transition-all duration-300">
-                            Staff Finder
-                        </a>
-                    </h3>
-                    <p class="text-gray-600">
-                        <span class="flex items-center text-sm font-medium mb-2">
-                            <i class="fas fa-map-marker-alt text-orange-500 mr-2"></i> Australia
-                        </span>
-                        Led SEO efforts for a staffing and recruitment platform, focusing on local SEO and improving job listing discoverability.
-                    </p>
-                </div>
-                <!-- Project 4 -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <h3 class="text-2xl font-bold mb-2">
-                        <a href="https://nexterior.ai/" target="_blank" class="text-gray-800 hover:text-orange-500 transition-all duration-300">
-                            Nexterior
-                        </a>
-                    </h3>
-                    <p class="text-gray-600">
-                        <span class="flex items-center text-sm font-medium mb-2">
-                            <i class="fas fa-map-marker-alt text-orange-500 mr-2"></i> Hyderabad
-                        </span>
-                        Optimized website SEO for an AI-based interior design platform. Improved metadata and content for better search rankings. Ensured SEO best practices across UI and performance. Tracked traffic and keyword growth using analytics tools.
-                    </p>
-                </div>
-                 <!-- Project 5: Eliteed Digital Academy (added based on user's input) -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <h3 class="text-2xl font-bold mb-2">
-                         <!-- Since the user didn't provide a URL for this project, the text is not a link -->
-                        Eliteed Digital Academy
-                    </h3>
-                    <p class="text-gray-600">
-                        <span class="flex items-center text-sm font-medium mb-2">
-                            <i class="fas fa-map-marker-alt text-orange-500 mr-2"></i> India
-                        </span>
-                        Implemented targeted SEO strategies, enhancing visibility for courses and improving keyword rankings.
-                    </p>
-                </div>
-                 <!-- Project 6: Techpranee Digital Agency (added based on user's input) -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <h3 class="text-2xl font-bold mb-2">
-                         <!-- Since the user didn't provide a URL for this project, the text is not a link -->
-                        Techpranee Digital Agency
-                    </h3>
-                    <p class="text-gray-600">
-                        <span class="flex items-center text-sm font-medium mb-2">
-                            <i class="fas fa-map-marker-alt text-orange-500 mr-2"></i> Hyderabad, Telangana
-                        </span>
-                        Worked as Digital Marketing Intern for Techpranee Manage SEO, SMM, Email Marketing and Run Meta Ads for www.techpranee.com                    
-                    </p>
-                </div>
-                 <!-- Project 7 -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <h3 class="text-2xl font-bold mb-2">
-                        <a href="https://www.instagram.com/ddrop.in?igsh=czJhNnRzaG9veDU5" target="_blank" class="text-gray-800 hover:text-orange-500 transition-all duration-300">
-                           Ddrop Manufacturer
-                        </a>
-                    </h3>
-                    <p class="text-gray-600">
-                        <span class="flex items-center text-sm font-medium mb-2">
-                            <i class="fas fa-map-marker-alt text-orange-500 mr-2"></i> India
-                        </span>
-                        Manage their Social Media and Run Ads for their Bathroom Accessories.
-                </div>
-                <!-- Project 8 -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <h3 class="text-2xl font-bold mb-2">
-                        <a href="https://psbeautysalonandmakeupacademy.com/" target="_blank" class="text-gray-800 hover:text-orange-500 transition-all duration-300">
-                           PS Beauty Salon
-                        </a>
-                    </h3>
-                    <p class="text-gray-600">
-                        <span class="flex items-center text-sm font-medium mb-2">
-                            <i class="fas fa-map-marker-alt text-orange-500 mr-2"></i> India
-                        </span>
-                        Create High Quality Business Listing Backlinks for their GMB and Website.
-            </div>
-        </div>
-    </section>
+<!-- SKILLS -->
+<section class="py-20 bg-gradient-to-br from-white to-orange-50">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-4">My Skills</h2>
+    <p class="text-center text-gray-600 mb-12">Tools & strategies I use to grow brands digitally</p>
 
-    <!-- Client Testimonials Section -->
-    <section id="testimonials" class="py-16 px-4 md:px-12 bg-gray-50">
-        <div class="container mx-auto animate-fade-in relative testimonial-slider">
-            <h2 class="section-title text-center mx-auto">Client Testimonials</h2>
-            <div class="testimonial-container mt-8">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card active">
-                    <p class="text-gray-600 text-base md:text-lg mb-4 relative z-10">"Mehak's SEO work on our custom packaging site was a game-changer. We saw a significant increase in organic traffic and now rank for key industry terms. Highly recommend her expertise!"</p>
-                    <div class="mt-4">
-                        <p class="font-bold text-gray-800">Jane Doe</p>
-                        <p class="text-sm text-gray-500">CEO, Custom Packaging Co.</p>
-                    </div>
-                </div>
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card">
-                    <p class="text-gray-600 text-base md:text-lg mb-4 relative z-10">"Her work on our e-commerce site was exceptional. The improvements to our product pages and backlink strategy directly led to higher rankings and more sales. A true professional."</p>
-                    <div class="mt-4">
-                        <p class="font-bold text-gray-800">John Smith</p>
-                        <p class="text-sm text-gray-500">Marketing Director, Dental Supplies Inc.</p>
-                    </div>
-                </div>
-                <!-- Testimonial 3 (New) -->
-                <div class="testimonial-card">
-                    <p class="text-gray-600 text-base md:text-lg mb-4 relative z-10">"Mehak's local SEO for our staffing platform was outstanding. We saw a significant increase in local job seeker traffic and improved discoverability for our listings. A pleasure to work with!"</p>
-                    <div class="mt-4">
-                        <p class="font-bold text-gray-800">Sarah Johnson</p>
-                        <p class="text-sm text-gray-500">Founder, Staff Finder</p>
-                    </div>
-                </div>
-                <!-- Testimonial 4 (New) -->
-                <div class="testimonial-card">
-                    <p class="text-gray-600 text-base md:text-lg mb-4 relative z-10">"The SEO strategies Mehak implemented for Project 14 were incredibly effective. Her focus on niche keywords gave us a competitive edge and drove highly-qualified leads to our business."</p>
-                    <div class="mt-4">
-                        <p class="font-bold text-gray-800">David Lee</p>
-                        <p class="text-sm text-gray-500">Marketing Manager, Project 14</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Slider Controls -->
-            <button id="prevBtn" class="slider-btn"><i class="fas fa-chevron-left"></i></button>
-            <button id="nextBtn" class="slider-btn"><i class="fas fa-chevron-right"></i></button>
-        </div>
-    </section>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+      
+      <!-- Skill Card -->
+      <div class="skill-card">
+        <i class="fas fa-search text-4xl text-orange-500 mb-4"></i>
+        <h3>SEO</h3>
+        <p>On-page, Off-page, Technical</p>
+      </div>
 
-    <!-- Education Section -->
-    <section id="education" class="py-16 px-4 md:px-12">
-        <div class="container mx-auto animate-fade-in">
-            <h2 class="section-title text-center mx-auto">Education</h2>
-            <!-- Grid layout is responsive, stacking on mobile -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
-                <!-- Education 1 -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <h3 class="text-2xl font-bold mb-2">B.A. Programme</h3>
-                    <p class="text-lg font-medium text-orange-500">DU, Sol</p>
-                    <p class="text-gray-600">11/2022 - Present</p>
-                </div>
-                <!-- Education 2 -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <h3 class="text-2xl font-bold mb-2">Professional Diploma in Digital Marketing</h3>
-                    <p class="text-lg font-medium text-orange-500">Indian Institute of Computer Science</p>
-                    <p class="text-600">11/2022 - 11/2023</p>
-                </div>
-                <!-- Education 3 -->
-                <div class="bg-white p-6 rounded-xl card">
-                    <h3 class="text-2xl font-bold mb-2">Advance Diploma in Computer Application</h3>
-                    <p class="text-lg font-medium text-orange-500">Gurukul Academy</p>
-                    <p class="text-gray-600">10/2022 - 10/2023</p>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="skill-card">
+        <i class="fab fa-google text-4xl text-orange-500 mb-4"></i>
+        <h3>Google Ads</h3>
+        <p>Search, Display, Conversion</p>
+      </div>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 px-4 md:px-12">
-        <div class="container mx-auto text-center animate-fade-in">
-            <h2 class="section-title text-center mx-auto">Contact</h2>
-            <p class="text-lg text-gray-600 mb-6 max-w-xl mx-auto">Feel free to reach out to me for collaborations, projects, or just to say hello!</p>
-            <!-- Flexbox layout is responsive, stacking on mobile -->
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-                <!-- Email Contact Card -->
-                <a href="mailto:mehakrajput146@gmail.com" class="bg-white p-6 rounded-xl card text-center flex items-center justify-center gap-4 contact-card transition duration-300">
-                    <i class="fas fa-envelope text-3xl text-blue-500 transition-all duration-300"></i>
-                    <div>
-                        <p class="font-bold text-lg">Email</p>
-                        <p>mehakrajput146@gmail.com</p>
-                    </div>
-                </a>
-                <!-- LinkedIn Contact Card -->
-                <a href="https://linkedin.com/in/mehak-rajput" target="_blank" class="bg-white p-6 rounded-xl card text-center flex items-center justify-center gap-4 contact-card transition duration-300">
-                    <i class="fab fa-linkedin text-3xl text-blue-500 transition-all duration-300"></i>
-                    <div>
-                        <p class="font-bold text-lg">LinkedIn</p>
-                        <p>linkedin.com/in/mehak-rajput</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </section>
+      <div class="skill-card">
+        <i class="fab fa-facebook text-4xl text-orange-500 mb-4"></i>
+        <h3>Meta Ads</h3>
+        <p>Lead & Sales Campaigns</p>
+      </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-8 px-4 md:px-12 text-center rounded-t-3xl">
-        <div class="container mx-auto">
-            <p>&copy; 2026 Mehak. All rights reserved.</p>
-        </div>
-    </footer>
+      <div class="skill-card">
+        <i class="fas fa-pen-nib text-4xl text-orange-500 mb-4"></i>
+        <h3>Content Marketing</h3>
+        <p>Blogs, SEO content, captions</p>
+      </div>
 
-    <!-- JavaScript for Menu and Slider -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const testimonials = document.querySelectorAll('.testimonial-card');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            let currentIndex = 0;
+      <div class="skill-card">
+        <i class="fas fa-chart-line text-4xl text-orange-500 mb-4"></i>
+        <h3>Analytics</h3>
+        <p>GA4, Search Console</p>
+      </div>
 
-            function showTestimonial(index) {
-                testimonials.forEach((testimonial, i) => {
-                    if (i === index) {
-                        testimonial.classList.add('active');
-                    } else {
-                        testimonial.classList.remove('active');
-                    }
-                });
-            }
+      <div class="skill-card">
+        <i class="fas fa-envelope-open-text text-4xl text-orange-500 mb-4"></i>
+        <h3>Email Marketing</h3>
+        <p>Campaigns & automation</p>
+      </div>
 
-            nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % testimonials.length;
-                showTestimonial(currentIndex);
-            });
+      <div class="skill-card">
+        <i class="fas fa-users text-4xl text-orange-500 mb-4"></i>
+        <h3>Social Media</h3>
+        <p>Branding & engagement</p>
+      </div>
 
-            prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-                showTestimonial(currentIndex);
-            });
+      <div class="skill-card">
+        <i class="fas fa-blog text-4xl text-orange-500 mb-4"></i>
+        <h3>Blogging</h3>
+        <p>SEO blogs & storytelling</p>
+      </div>
 
-            showTestimonial(currentIndex);
+    </div>
+  </div>
+</section>
 
-            const menuButton = document.getElementById('menu-button');
-            const mobileMenu = document.getElementById('mobile-menu-overlay');
-            const closeMenuButton = document.getElementById('close-menu-button');
-            const navLinks = mobileMenu.querySelectorAll('a');
+<!-- PROJECTS -->
+<section id="projects" class="py-20 bg-gradient-to-br from-orange-50 to-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-center mb-4">Projects</h2>
+    <p class="text-center text-gray-600 mb-12">Real projects that helped brands grow digitally</p>
 
-            function openMenu() {
-                mobileMenu.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
+    <div class="grid md:grid-cols-2 gap-10">
 
-            window.closeMenu = function() {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
+      <!-- Project Card -->
+      <div class="project-card">
+        <h3 class="text-2xl font-bold mb-1">Project 14</h3>
+        <p class="text-sm text-orange-600 mb-2">US</p>
+        <p class="text-gray-600 mb-4">Implemented targeted SEO strategies for a custom packaging service provider, enhancing visibility for niche keywords like military packaging and wood crates.</p>
+        <a href="https://www.project14.com/" target="_blank" class="project-link">Visit Website →</a>
+      </div>
 
-            menuButton.addEventListener('click', openMenu);
-            closeMenuButton.addEventListener('click', closeMenu);
+      <div class="project-card">
+        <h3 class="text-2xl font-bold mb-1">Starryshine</h3>
+        <p class="text-sm text-orange-600 mb-2">US</p>
+        <p class="text-gray-600 mb-4">Optimized SEO and product page structure for a dental supplies e-commerce site, improving keyword rankings and organic traffic.</p>
+        <a href="https://starryshine.com/" target="_blank" class="project-link">Visit Website →</a>
+      </div>
 
-            navLinks.forEach(link => {
-                link.addEventListener('click', closeMenu);
-            });
-        });
-    </script>
+      <div class="project-card">
+        <h3 class="text-2xl font-bold mb-1">Staff Finder</h3>
+        <p class="text-sm text-orange-600 mb-2">Australia</p>
+        <p class="text-gray-600 mb-4">Led SEO efforts for a staffing and recruitment platform, focusing on local SEO and improving job listing discoverability.</p>
+        <a href="https://stafffinder.com.au/" target="_blank" class="project-link">Visit Website →</a>
+      </div>
+
+      <div class="project-card">
+        <h3 class="text-2xl font-bold mb-1">Nexterior</h3>
+        <p class="text-sm text-orange-600 mb-2">Hyderabad</p>
+        <p class="text-gray-600 mb-4">Optimized website SEO for an AI-based interior design platform. Improved metadata and content for better search rankings and tracked keyword growth.</p>
+        <a href="https://nexterior.ai/" target="_blank" class="project-link">Visit Website →</a>
+      </div>
+
+      <div class="project-card">
+        <h3 class="text-2xl font-bold mb-1">Eliteed Digital Academy</h3>
+        <p class="text-sm text-orange-600 mb-2">India</p>
+        <p class="text-gray-600 mb-4">Implemented targeted SEO strategies, enhancing visibility for courses and improving keyword rankings.</p>
+        <a href="https://eliteeddigitalacademy.com/" target="_blank" class="project-link">Visit Website →</a>
+      </div>
+
+      <div class="project-card">
+        <h3 class="text-2xl font-bold mb-1">Techpranee Digital Agency</h3>
+        <p class="text-sm text-orange-600 mb-2">Hyderabad, Telangana</p>
+        <p class="text-gray-600 mb-4">Worked as Digital Marketing Intern managing SEO, SMM, Email Marketing and Meta Ads.</p>
+        <a href="https://www.techpranee.com/" target="_blank" class="project-link">Visit Website →</a>
+      </div>
+
+      <div class="project-card">
+        <h3 class="text-2xl font-bold mb-1">Ddrop Manufacturer</h3>
+        <p class="text-sm text-orange-600 mb-2">India</p>
+        <p class="text-gray-600 mb-4">Managed social media and ran ads for bathroom accessories brand to increase leads and awareness.</p>
+        <a href="https://www.instagram.com/ddrop.in" target="_blank" class="project-link">Visit Instagram →</a>
+      </div>
+
+      <div class="project-card">
+        <h3 class="text-2xl font-bold mb-1">PS Beauty Salon</h3>
+        <p class="text-sm text-orange-600 mb-2">India</p>
+        <p class="text-gray-600 mb-4">Created high-quality business listing backlinks for GMB and website to improve local SEO.</p>
+        <a href="https://psbeautysalonandmakeupacademy.com/" target="_blank" class="project-link">Visit Website →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT WITH ME -->
+<section class="py-20 bg-gray-900 text-white relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+    <h2 class="text-4xl font-bold mb-6">Let’s Connect</h2>
+    <p class="text-gray-300 mb-10 text-lg">Open to opportunities, collaborations, and digital growth discussions.</p>
+
+    <div class="flex flex-col md:flex-row justify-center gap-8 text-lg">
+      <a href="mailto:mehakrajput146@gmail.com" class="flex items-center gap-3 hover:text-orange-400 transition">
+        <i class="fas fa-envelope text-orange-400"></i>
+        mehakrajput146@gmail.com
+      </a>
+
+      <a href="https://www.linkedin.com/in/mehak-rajput/" target="_blank" class="flex items-center gap-3 hover:text-orange-400 transition">
+        <i class="fab fa-linkedin text-orange-400"></i>
+        LinkedIn Profile
+      </a>
+
+      <a href="https://wa.me/919911402721" target="_blank" class="flex items-center gap-3 hover:text-orange-400 transition">
+        <i class="fab fa-whatsapp text-orange-400"></i>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+  
+</section>
+
+
+<footer class="text-center py-6 bg-black text-white">© 2026 Mehak | Digital Marketer</footer>
+
 </body>
 </html>
-
-
-
-
-
-
-
